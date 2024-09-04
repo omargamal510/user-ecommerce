@@ -1,7 +1,8 @@
-import { FormEvent, useContext, useState } from "react";
+import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { RegisterData, RegisterResponse } from "../../types/register";
-import TokenContext from "../../contexts/tokenContext";
+import TokenContext from "../../contexts/TokenContext";
+import InputError from "../../ui/InputError";
 
 const baseUrl: string = import.meta.env.VITE_BASE_URL;
 
@@ -24,14 +25,31 @@ function Register() {
   //   e.preventDefault();
   // }
 
-  const { token, setToken } = useContext(TokenContext);
+  const { setToken } = useContext(TokenContext);
   const [registerError, setRegisterError] = useState<string | any>("");
+
+  // const schema = Yup.object().shape({
+  //   name: Yup.string()
+  //     .matches(/^\w{4,}$/, "name must be more than 3 characters")
+  //     .required("Name is required"),
+  //   email: Yup.string().email("Invalid email").required("Email is required"),
+  //   password: Yup.string()
+  //     .matches(/^[A-Z]/, "Password must start with an uppercase letter")
+  //     .min(6, "Password must be at least 6 characters")
+  //     .required("Password is required"),
+
+  //   confirmPassword: Yup.string()
+  //     .oneOf([Yup.ref("password")], "Passwords must match")
+  //     .required("confirm password is required"),
+
+  //   phone: Yup.string()
+  //     .matches(/^\d{11}$/, "Phone number must be exactly 10 digits")
+  //     .required("Phone number is required"),
+  // });
 
   const {
     register,
     handleSubmit,
-
-    watch,
     formState: { errors },
   } = useForm<RegisterData>();
 
@@ -45,6 +63,7 @@ function Register() {
         body: JSON.stringify(data),
       });
 
+      console.log(data);
       const result: RegisterResponse = await response.json();
 
       if (response.ok) {
@@ -55,9 +74,7 @@ function Register() {
         console.log(result.message);
       }
     } catch (error) {
-      // throw new Error("Something went wrong");
-      // setRegisterError(error);
-      // console.log(error);
+      console.error(error);
     }
   };
 
@@ -85,7 +102,7 @@ function Register() {
                 <label className="components-input-label absolute left-3 top-[-5px] px-2 bg-white text-textSecondary">
                   Name
                 </label>
-                {errors.name && <p>{errors.name.message}</p>}
+                {errors.name && <InputError error={errors.name?.message} />}
               </div>
 
               <div className="relative">
@@ -98,7 +115,7 @@ function Register() {
                 <label className="components-input-label absolute left-3 top-[-5px] px-2 bg-white text-textSecondary">
                   Email
                 </label>
-                {errors.email && <p>{errors.email.message}</p>}
+                {errors.email && <InputError error={errors.email?.message} />}
               </div>
 
               <div className="relative">
@@ -113,21 +130,26 @@ function Register() {
                 <label className="components-input-label absolute left-3 top-[-5px] px-2 bg-white text-textSecondary">
                   Password
                 </label>
-                {errors.password && <p>{errors.password.message}</p>}
+                {errors.password && (
+                  <InputError error={errors.password?.message} />
+                )}
               </div>
 
               <div className="relative">
+                {" "}
                 <input
                   type="password"
                   className="border h-10 md:h-12 lg:h-14 w-72 sm:w-96 md:w-80 lg:w-96 rounded-lg focus:outline-none px-4 text-xs"
-                  {...register("rePassword", {
-                    required: "rePassword is required",
+                  {...register("confirmPassword", {
+                    required: "confirm password is required",
                   })}
                 />
                 <label className="components-input-label absolute left-3 top-[-5px] px-2 bg-white text-textSecondary">
-                  Re-Password
+                  Confirm Password
                 </label>
-                {errors.rePassword && <p>{errors.rePassword.message}</p>}
+                {errors.confirmPassword && (
+                  <InputError error={errors.confirmPassword?.message} />
+                )}
               </div>
 
               <div className="relative">
@@ -141,7 +163,7 @@ function Register() {
                 <label className="components-input-label absolute left-3 top-[-5px] px-2 bg-white text-textSecondary">
                   Phone
                 </label>
-                {errors.phone && <p>{errors.phone.message}</p>}
+                {errors.phone && <InputError error={errors.phone?.message} />}
               </div>
 
               <button
@@ -151,7 +173,7 @@ function Register() {
                 Submit
               </button>
 
-              {registerError && <p>{registerError}</p>}
+              {registerError && <InputError error={registerError} />}
             </form>
           </div>
 
