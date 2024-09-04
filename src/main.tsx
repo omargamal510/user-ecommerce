@@ -3,9 +3,12 @@ import { createRoot } from "react-dom/client";
 import App from "./App.tsx";
 import "./index.css";
 import "./style.scss";
+import { TokenContextProvider } from "./contexts/tokenContext.tsx";
 
 createRoot(document.getElementById("root")!).render(
-  <StrictMode>
-    <App />
-  </StrictMode>
+  <TokenContextProvider>
+    <StrictMode>
+      <App />
+    </StrictMode>
+  </TokenContextProvider>
 );
