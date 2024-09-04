@@ -31,8 +31,8 @@ function Register() {
 
       <div className="register">
         <div className="register-container flex justify-center">
-          <div className="register-form flex flex-col justify-center items-center  w-full h-screen gap-6 border-2">
-            <form className="flex-col flex gap-6">
+          <div className="register-form flex flex-col justify-center items-center w-full md:w-1/2 h-screen gap-6p-10">
+            <form className="flex-col flex gap-6 p-10">
               <div className="flex-col flex gap-2 mb-10">
                 {" "}
                 <h2 className="typography-h4 text-textPrimary">Welcome👋</h2>
@@ -43,7 +43,7 @@ function Register() {
                 {" "}
                 <input
                   type="text"
-                  className="border h-14 w-96 rounded-lg self-start focus:outline-none px-4 text-xs"
+                  className="border h-10 md:h-12 lg:h-14 w-72 sm:w-96 md:w-80 lg:w-96 rounded-lg focus:outline-none px-4 text-xs"
                 />
                 <label className="components-input-label absolute left-3 top-[-5px] px-2 bg-white text-textSecondary">
                   Name
@@ -54,7 +54,7 @@ function Register() {
                 {" "}
                 <input
                   type="text"
-                  className="border h-14 w-96 rounded-lg self-start focus:outline-none px-4 text-xs"
+                  className="border h-10 md:h-12 lg:h-14 w-72 sm:w-96 md:w-80 lg:w-96 rounded-lg focus:outline-none px-4 text-xs"
                 />
                 <label className="components-input-label absolute left-3 top-[-5px] px-2 bg-white text-textSecondary">
                   Email
@@ -65,7 +65,7 @@ function Register() {
                 {" "}
                 <input
                   type="password"
-                  className="border h-14 w-96 rounded-lg self-start focus:outline-none px-4 text-xs"
+                  className="border h-10 md:h-12 lg:h-14 w-72 sm:w-96 md:w-80 lg:w-96 rounded-lg focus:outline-none px-4 text-xs"
                 />
                 <label className="components-input-label absolute left-3 top-[-5px] px-2 bg-white text-textSecondary">
                   Password
@@ -76,7 +76,7 @@ function Register() {
                 {" "}
                 <input
                   type="password"
-                  className="border h-14 w-96 rounded-lg self-start focus:outline-none px-4 text-xs"
+                  className="border h-10 md:h-12 lg:h-14 w-72 sm:w-96 md:w-80 lg:w-96 rounded-lg focus:outline-none px-4 text-xs"
                 />
                 <label className="components-input-label absolute left-3 top-[-5px] px-2 bg-white text-textSecondary">
                   Re-Password
@@ -87,7 +87,7 @@ function Register() {
                 {" "}
                 <input
                   type="number"
-                  className="border h-14 w-96 rounded-lg self-start focus:outline-none px-4 text-xs"
+                  className="border h-10 md:h-12 lg:h-14 w-72 sm:w-96 md:w-80 lg:w-96 rounded-lg focus:outline-none px-4 text-xs"
                 />
                 <label className="components-input-label absolute left-3 top-[-5px] px-2 bg-white text-textSecondary">
                   Phone
@@ -103,8 +103,8 @@ function Register() {
             </form>
           </div>
 
-          <div className="register-image w-full  overflow-hidden">
-            <img src="grid.jpg" className="h-full object-cover" />
+          <div className="register-image w-1/2 h-screen overflow-hidden hidden md:block">
+            <img src="grid.jpg" className="h-full w-full object-cover" />
           </div>
         </div>
       </div>
