@@ -6,6 +6,8 @@ import InputError from "../../ui/InputError";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import Spinner from "../../ui/Spinner";
+import { Link } from "react-router-dom";
+import DarkModeList from "../../components/DarkModeList.tsx/DarkModeList";
 
 const baseUrl: string = import.meta.env.VITE_BASE_URL;
 
@@ -46,7 +48,6 @@ function Register() {
   const {
     register,
     handleSubmit,
-    setError,
     formState: { errors, isSubmitting },
   } = useForm<RegisterData>({
     resolver: zodResolver(registerSchema),
@@ -62,7 +63,7 @@ function Register() {
         body: JSON.stringify(data),
       });
 
-      const result = await response.json();
+      const result: RegisterResponse = await response.json();
 
       if (response.ok) {
         setToken(result.token);
@@ -161,6 +162,8 @@ function Register() {
             >
               {isSubmitting ? <Spinner /> : "Submit"}
             </button>
+
+            <DarkModeList />
 
             {registerError && <InputError error={registerError} />}
           </form>
