@@ -5,6 +5,7 @@ import TokenContext from "../../contexts/TokenContext";
 import InputError from "../../ui/InputError";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
+import Spinner from "../../ui/Spinner";
 
 const baseUrl: string = import.meta.env.VITE_BASE_URL;
 
@@ -36,7 +37,7 @@ function Register() {
       if (data.password !== data.rePassword) {
         ctx.addIssue({
           code: z.ZodIssueCode.custom,
-          path: ["confirmPassword"], // The path where the error will appear
+          path: ["rePassword"], // The path where the error will appear
           message: "Passwords must match",
         });
       }
@@ -72,9 +73,7 @@ function Register() {
         console.error("Form submission failed", result);
       }
     } catch (error: any) {
-      // Handle network or unexpected errors
       console.error("An unexpected error occurred: ", error.message || error);
-      setRegisterError("An unexpected error occurred. Please try again later.");
     }
   };
 
@@ -160,7 +159,7 @@ function Register() {
               type="submit"
               className="bg-primaryMain h-12 rounded-lg text-white text-sm"
             >
-              {isSubmitting ? "Loading..." : "Submit"}
+              {isSubmitting ? <Spinner /> : "Submit"}
             </button>
 
             {registerError && <InputError error={registerError} />}
