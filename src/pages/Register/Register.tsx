@@ -6,7 +6,7 @@ import InputError from "../../ui/InputError";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import Spinner from "../../ui/Spinner";
-import { Link } from "react-router-dom";
+
 import DarkModeList from "../../components/DarkModeList.tsx/DarkModeList";
 
 const baseUrl: string = import.meta.env.VITE_BASE_URL;
@@ -158,7 +158,7 @@ function Register() {
             <button
               disabled={isSubmitting}
               type="submit"
-              className="bg-primaryMain h-12 rounded-lg text-white text-sm"
+              className="bg-primaryMain h-12 rounded-lg text-white text-sm dark:bg-black"
             >
               {isSubmitting ? <Spinner /> : "Submit"}
             </button>

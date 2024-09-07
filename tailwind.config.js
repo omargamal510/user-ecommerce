@@ -1,6 +1,7 @@
 /** @type {import('tailwindcss').Config} */
+
 export const content = ["./src/**/*.{js,jsx,ts,tsx}"];
-export const darkMode = "selector"; // or 'class' if you prefer manual control
+export let darkMode = "class"; // or 'class' if you prefer manual control
 export const theme = {
   extend: {
     colors: {

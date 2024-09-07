@@ -7,3 +7,8 @@
   font-family: "Inter", sans-serif;
   box-sizing: border-box;
 }
+
+/* Related to the button of dark mode switch */
+.p-dropdown-trigger {
+  display: none !important;
+}
