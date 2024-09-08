@@ -8,6 +8,30 @@
   box-sizing: border-box;
 }
 
+body {
+  @apply bg-white;
+}
+
+body h2 {
+  @apply text-textPrimary;
+}
+
+body p {
+  @apply text-textSecondary;
+}
+
+.dark body {
+  @apply bg-gray-800;
+}
+
+.dark body h2 {
+  @apply text-white;
+}
+
+.dark body p {
+  @apply text-gray-400;
+}
+
 /* Related to the button of dark mode switch */
 .p-dropdown-trigger {
   display: none !important;

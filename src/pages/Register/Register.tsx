@@ -86,18 +86,20 @@ function Register() {
             onSubmit={handleSubmit(onSubmit)}
             className="flex-col flex gap-6 p-10"
           >
-            <div className="flex-col flex gap-2 mb-10">
-              <h2 className="typography-h4 text-textPrimary">Welcome👋</h2>
-              <p className="text-textSecondary">Register to join us now!</p>
+            <DarkModeList />
+
+            <div className="flex-col flex gap-2 mb-5">
+              <h2 className="typography-h4 ">Welcome👋</h2>
+              <p className="">Register to join us now!</p>
             </div>
 
             <div className="relative">
               <input
                 type="text"
-                className="border h-10 md:h-12 lg:h-14 w-72 sm:w-96 md:w-80 lg:w-96 rounded-lg focus:outline-none px-4 text-xs"
+                className="border h-10 md:h-12 lg:h-14 w-72 sm:w-96 md:w-80 lg:w-96 rounded-lg focus:outline-none px-4 text-xs bg-white dark:bg-gray-800 dark:border-textSecondary dark:text-white"
                 {...register("name")}
               />
-              <label className="components-input-label absolute left-3 top-[-5px] px-2 bg-white text-textSecondary">
+              <label className="components-input-label absolute left-3 top-[-5px] px-2 bg-white text-textSecondary dark:bg-gray-800 ">
                 Name
               </label>
               {errors.name && <InputError error={errors.name.message} />}
@@ -106,10 +108,10 @@ function Register() {
             <div className="relative">
               <input
                 type="text"
-                className="border h-10 md:h-12 lg:h-14 w-72 sm:w-96 md:w-80 lg:w-96 rounded-lg focus:outline-none px-4 text-xs"
+                className="border h-10 md:h-12 lg:h-14 w-72 sm:w-96 md:w-80 lg:w-96 rounded-lg focus:outline-none px-4 text-xs bg-white dark:bg-gray-800 dark:border-textSecondary dark:text-white"
                 {...register("email")}
               />
-              <label className="components-input-label absolute left-3 top-[-5px] px-2 bg-white text-textSecondary">
+              <label className="components-input-label absolute left-3 top-[-5px] px-2 bg-white text-textSecondary dark:bg-gray-800 ">
                 Email
               </label>
               {errors.email && <InputError error={errors.email.message} />}
@@ -118,10 +120,10 @@ function Register() {
             <div className="relative">
               <input
                 type="password"
-                className="border h-10 md:h-12 lg:h-14 w-72 sm:w-96 md:w-80 lg:w-96 rounded-lg focus:outline-none px-4 text-xs"
+                className="border h-10 md:h-12 lg:h-14 w-72 sm:w-96 md:w-80 lg:w-96 rounded-lg focus:outline-none px-4 text-xs bg-white dark:bg-gray-800 dark:border-textSecondary dark:text-white"
                 {...register("password")}
               />
-              <label className="components-input-label absolute left-3 top-[-5px] px-2 bg-white text-textSecondary">
+              <label className="components-input-label absolute left-3 top-[-5px] px-2 bg-white text-textSecondary dark:bg-gray-800 ">
                 Password
               </label>
               {errors.password && (
@@ -132,10 +134,10 @@ function Register() {
             <div className="relative">
               <input
                 type="password"
-                className="border h-10 md:h-12 lg:h-14 w-72 sm:w-96 md:w-80 lg:w-96 rounded-lg focus:outline-none px-4 text-xs"
+                className="border h-10 md:h-12 lg:h-14 w-72 sm:w-96 md:w-80 lg:w-96 rounded-lg focus:outline-none px-4 text-xs bg-white dark:bg-gray-800 dark:border-textSecondary dark:text-white"
                 {...register("rePassword")}
               />
-              <label className="components-input-label absolute left-3 top-[-5px] px-2 bg-white text-textSecondary">
+              <label className="components-input-label absolute left-3 top-[-5px] px-2 bg-white text-textSecondary dark:bg-gray-800 ">
                 Confirm Password
               </label>
               {errors.rePassword && (
@@ -146,10 +148,10 @@ function Register() {
             <div className="relative">
               <input
                 type="tel"
-                className="border h-10 md:h-12 lg:h-14 w-72 sm:w-96 md:w-80 lg:w-96 rounded-lg focus:outline-none px-4 text-xs"
+                className="border h-10 md:h-12 lg:h-14 w-72 sm:w-96 md:w-80 lg:w-96 rounded-lg focus:outline-none px-4 text-xs bg-white dark:bg-gray-800 dark:border-textSecondary dark:text-white"
                 {...register("phone")}
               />
-              <label className="components-input-label absolute left-3 top-[-5px] px-2 bg-white text-textSecondary">
+              <label className="components-input-label absolute left-3 top-[-5px] px-2 bg-white text-textSecondary dark:bg-gray-800 ">
                 Phone
               </label>
               {errors.phone && <InputError error={errors.phone.message} />}
@@ -158,12 +160,10 @@ function Register() {
             <button
               disabled={isSubmitting}
               type="submit"
-              className="bg-primaryMain h-12 rounded-lg text-white text-sm dark:bg-black"
+              className="bg-primaryMain h-12 rounded-lg text-white text-sm "
             >
               {isSubmitting ? <Spinner /> : "Submit"}
             </button>
-
-            <DarkModeList />
 
             {registerError && <InputError error={registerError} />}
           </form>

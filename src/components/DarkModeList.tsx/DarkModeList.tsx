@@ -1,7 +1,7 @@
 import { Dropdown, DropdownChangeEvent } from "primereact/dropdown";
 import { useEffect, useState } from "react";
 
-interface mode {
+interface Mode {
   name: string;
   code: string;
 }
@@ -12,22 +12,28 @@ const mySystemMode: boolean = window.matchMedia(
 ).matches;
 
 function DarkModeList() {
-  const mode: mode[] = [
+  const modes: Mode[] = [
     { name: "☀️", code: "light" },
-    { name: "🌙", code: "selector" }, // dark
-    { name: "🖥️", code: "media" }, // system
+    { name: "🌙", code: "dark" }, // dark
+    { name: "🖥️", code: "system" }, // system
   ];
-  const [selectedCity, setSelectedCity] = useState<mode | null>(mode[0]);
 
+  // Check localStorage for saved theme or default to light
+  const initialTheme = localStorage.getItem("appTheme") || "light";
+  const [selectedTheme, setSelectedTheme] = useState<Mode | null>(
+    modes.find((m) => m.code === initialTheme) || modes[0]
+  );
+
+  // Save theme to localStorage and apply the dark mode class
   useEffect(() => {
-    citySelected = selectedCity?.code;
+    citySelected = selectedTheme?.code;
 
     function darkModeHandler() {
       if (citySelected === "light") {
         document.documentElement.classList.remove("dark");
-      } else if (citySelected === "selector") {
+      } else if (citySelected === "dark") {
         document.documentElement.classList.add("dark");
-      } else if (citySelected === "media") {
+      } else if (citySelected === "system") {
         if (mySystemMode) {
           document.documentElement.classList.add("dark");
         } else {
@@ -36,19 +42,23 @@ function DarkModeList() {
       }
     }
 
+    localStorage.setItem("appTheme", selectedTheme?.code || "light");
     darkModeHandler();
-  }, [selectedCity]);
+  }, [selectedTheme]);
 
   return (
     <div>
       <div className="card flex justify-content-center">
         <Dropdown
-          value={selectedCity}
-          onChange={(e: DropdownChangeEvent) => setSelectedCity(e.value)}
-          options={mode}
+          value={selectedTheme}
+          onChange={(e: DropdownChangeEvent) => {
+            const selectedMode = modes.find((m) => m.code === e.value.code);
+            setSelectedTheme(selectedMode || modes[0]);
+          }}
+          options={modes}
           optionLabel="name"
           placeholder={"☀️"}
-          className="w-10 md:w-14rem border"
+          className="w-10 md:w-14rem border bg-white dark:bg-gray-800 dark:border-textSecondary"
         />
       </div>
     </div>
@@ -56,5 +66,3 @@ function DarkModeList() {
 }
 
 export default DarkModeList;
-
-// append changes into the tailwind configration
