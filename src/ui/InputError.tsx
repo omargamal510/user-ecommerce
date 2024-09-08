@@ -5,7 +5,7 @@ interface InputErrorProps {
 function InputError({ error }: InputErrorProps) {
   return (
     <>
-      <div className="input-error  text-red-500  rounded-lg mt-2">
+      <div className="input-error  text-red-500  rounded-lg">
         <span className="text-xs text-red-500">🚫 {error}</span>
       </div>
     </>

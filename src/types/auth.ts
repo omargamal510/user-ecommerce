@@ -15,3 +15,8 @@ export type RegisterResponse = {
     role: string;
   };
 };
+
+export type loginData = {
+  email: "string";
+  password: "string";
+};

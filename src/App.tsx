@@ -12,6 +12,7 @@
 
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Register from "./pages/Register/Register";
+import SignIn from "./pages/SignIn/SignIn";
 /*
   Client ID : 865740099015-lls5ag00i966a7prmeg70hvr4kne1tm0.apps.googleusercontent.com
 */
@@ -22,6 +23,8 @@ function App() {
   return (
     <>
       <Register />
+      {/* 
+      <SignIn /> */}
       <Router>
         <Routes>
           {/* <Route path="/" element={<Home />} />

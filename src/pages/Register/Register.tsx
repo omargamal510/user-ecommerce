@@ -1,6 +1,6 @@
 import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
-import { RegisterData, RegisterResponse } from "../../types/register";
+import { RegisterData, RegisterResponse } from "../../types/auth";
 import TokenContext from "../../contexts/TokenContext";
 import InputError from "../../ui/InputError";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -8,6 +8,8 @@ import { z } from "zod";
 import Spinner from "../../ui/Spinner";
 
 import DarkModeList from "../../components/DarkModeList.tsx/DarkModeList";
+import RegisterImage from "../../components/RegisterImage/RegisterImage/RegisterImage";
+import RegisterHeader from "../../components/RegisterHeader/RegisterHeader";
 
 const baseUrl: string = import.meta.env.VITE_BASE_URL;
 
@@ -88,10 +90,7 @@ function Register() {
           >
             <DarkModeList />
 
-            <div className="flex-col flex gap-2 mb-5">
-              <h2 className="typography-h4 ">Welcome👋</h2>
-              <p className="">Register to join us now!</p>
-            </div>
+            <RegisterHeader />
 
             <div className="relative">
               <input
@@ -169,9 +168,7 @@ function Register() {
           </form>
         </div>
 
-        <div className="register-image w-1/2 h-screen overflow-hidden hidden md:block">
-          <img src="grid.jpg" className="h-full w-full object-cover" />
-        </div>
+        <RegisterImage />
       </div>
     </div>
   );
