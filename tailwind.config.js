@@ -8,6 +8,12 @@ export const theme = {
       textPrimary: "#111827",
       textSecondary: "#6B7280",
       primaryMain: "#5048E5",
+      "neutral/900": "#111827",
+    },
+
+    boxShadow: {
+      custom: "0px 4px 6px 0px #64748B1F",
+      "custom-dark": "0px 4px 6px 0px rgba(255, 255, 255, 0.1)", // Dark mode shadow (example)
     },
   },
 };
