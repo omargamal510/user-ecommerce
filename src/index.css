@@ -10,7 +10,7 @@
 
 body {
   box-shadow: 0px 4px 6px 0px rgba(41, 41, 41, 0.2);
-  @apply bg-white;
+  @apply bg-mainWhite;
 }
 
 body h2 {
@@ -22,7 +22,7 @@ body p {
 }
 
 .dark body {
-  @apply bg-gray-800;
+  @apply bg-darkBg;
 }
 
 .dark body h2 {

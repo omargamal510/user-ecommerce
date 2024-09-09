@@ -11,12 +11,14 @@ import DarkModeList from "../../components/DarkModeList.tsx/DarkModeList";
 import { loginData } from "../../types/auth";
 import RegisterImage from "../../components/RegisterImage/RegisterImage/RegisterImage";
 import RegisterHeader from "../../components/RegisterHeader/RegisterHeader";
+import { useNavigate } from "react-router-dom";
 
 const baseUrl: string = import.meta.env.VITE_BASE_URL;
 
 function SignIn() {
-  const { setToken } = useContext(TokenContext);
+  const { token, setToken } = useContext(TokenContext);
   const [loginError, setLoginError] = useState<string>("");
+  const navigate = useNavigate();
 
   const signInSchema = z.object({
     email: z
@@ -47,8 +49,12 @@ function SignIn() {
       const result: RegisterResponse = await response.json();
 
       if (response.ok) {
-        setToken(result.token);
-        console.log("Registration success", result);
+        const token = result.token; // Get the token from the result
+        setToken(token); // Update state with the token
+        localStorage.setItem("userToken", token); // Store the token directly
+        console.log("Sign-in success", result);
+
+        navigate("/");
       } else {
         // Handle and display backend error messages directly
         setLoginError(result.message || "Form submission failed");
@@ -79,10 +85,10 @@ function SignIn() {
             <div className="relative">
               <input
                 type="text"
-                className="border h-10 md:h-12 lg:h-14 w-72 sm:w-96 md:w-80 lg:w-96 rounded-lg focus:outline-none px-4 text-xs bg-white dark:bg-gray-800 dark:border-textSecondary dark:text-white"
+                className="border h-10 md:h-12 lg:h-14 w-72 sm:w-96 md:w-80 lg:w-96 rounded-lg focus:outline-none px-4 text-xs bg-mainWhite dark:bg-darkBg dark:border-textSecondary dark:text-white"
                 {...register("email")}
               />
-              <label className="components-input-label absolute left-3 top-[-5px] px-2 bg-white text-textSecondary dark:bg-gray-800 ">
+              <label className="components-input-label absolute left-3 top-[-5px] px-2 bg-mainWhite text-textSecondary dark:bg-darkBg">
                 Email
               </label>
               {errors.email && <InputError error={errors.email.message} />}
@@ -90,11 +96,11 @@ function SignIn() {
 
             <div className="relative">
               <input
-                type="password"
-                className="border h-10 md:h-12 lg:h-14 w-72 sm:w-96 md:w-80 lg:w-96 rounded-lg focus:outline-none px-4 text-xs bg-white dark:bg-gray-800 dark:border-textSecondary dark:text-white"
+                type="text"
+                className="border h-10 md:h-12 lg:h-14 w-72 sm:w-96 md:w-80 lg:w-96 rounded-lg focus:outline-none px-4 text-xs bg-mainWhite dark:bg-darkBg dark:border-textSecondary dark:text-white"
                 {...register("password")}
               />
-              <label className="components-input-label absolute left-3 top-[-5px] px-2 bg-white text-textSecondary dark:bg-gray-800 ">
+              <label className="components-input-label absolute left-3 top-[-5px] px-2 bg-mainWhite text-textSecondary dark:bg-darkBg">
                 Password
               </label>
               {errors.password && (

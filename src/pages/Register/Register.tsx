@@ -95,10 +95,10 @@ function Register() {
             <div className="relative">
               <input
                 type="text"
-                className="border h-10 md:h-12 lg:h-14 w-72 sm:w-96 md:w-80 lg:w-96 rounded-lg focus:outline-none px-4 text-xs bg-white dark:bg-gray-800 dark:border-textSecondary dark:text-white"
+                className="border h-10 md:h-12 lg:h-14 w-72 sm:w-96 md:w-80 lg:w-96 rounded-lg focus:outline-none px-4 text-xs bg-mainWhite dark:bg-darkBg dark:border-textSecondary dark:text-white"
                 {...register("name")}
               />
-              <label className="components-input-label absolute left-3 top-[-5px] px-2 bg-white text-textSecondary dark:bg-gray-800 ">
+              <label className="components-input-label absolute left-3 top-[-5px] px-2 bg-mainWhite text-textSecondary dark:bg-darkBg">
                 Name
               </label>
               {errors.name && <InputError error={errors.name.message} />}
@@ -107,10 +107,10 @@ function Register() {
             <div className="relative">
               <input
                 type="text"
-                className="border h-10 md:h-12 lg:h-14 w-72 sm:w-96 md:w-80 lg:w-96 rounded-lg focus:outline-none px-4 text-xs bg-white dark:bg-gray-800 dark:border-textSecondary dark:text-white"
+                className="border h-10 md:h-12 lg:h-14 w-72 sm:w-96 md:w-80 lg:w-96 rounded-lg focus:outline-none px-4 text-xs bg-mainWhite dark:bg-darkBg dark:border-textSecondary dark:text-white"
                 {...register("email")}
               />
-              <label className="components-input-label absolute left-3 top-[-5px] px-2 bg-white text-textSecondary dark:bg-gray-800 ">
+              <label className="components-input-label absolute left-3 top-[-5px] px-2 bg-mainWhite text-textSecondary dark:bg-darkBg">
                 Email
               </label>
               {errors.email && <InputError error={errors.email.message} />}
@@ -118,11 +118,11 @@ function Register() {
 
             <div className="relative">
               <input
-                type="password"
-                className="border h-10 md:h-12 lg:h-14 w-72 sm:w-96 md:w-80 lg:w-96 rounded-lg focus:outline-none px-4 text-xs bg-white dark:bg-gray-800 dark:border-textSecondary dark:text-white"
+                type="text"
+                className="border h-10 md:h-12 lg:h-14 w-72 sm:w-96 md:w-80 lg:w-96 rounded-lg focus:outline-none px-4 text-xs bg-mainWhite dark:bg-darkBg dark:border-textSecondary dark:text-white"
                 {...register("password")}
               />
-              <label className="components-input-label absolute left-3 top-[-5px] px-2 bg-white text-textSecondary dark:bg-gray-800 ">
+              <label className="components-input-label absolute left-3 top-[-5px] px-2 bg-mainWhite text-textSecondary dark:bg-darkBg">
                 Password
               </label>
               {errors.password && (
@@ -132,11 +132,11 @@ function Register() {
 
             <div className="relative">
               <input
-                type="password"
-                className="border h-10 md:h-12 lg:h-14 w-72 sm:w-96 md:w-80 lg:w-96 rounded-lg focus:outline-none px-4 text-xs bg-white dark:bg-gray-800 dark:border-textSecondary dark:text-white"
+                type="text"
+                className="border h-10 md:h-12 lg:h-14 w-72 sm:w-96 md:w-80 lg:w-96 rounded-lg focus:outline-none px-4 text-xs bg-mainWhite dark:bg-darkBg dark:border-textSecondary dark:text-white"
                 {...register("rePassword")}
               />
-              <label className="components-input-label absolute left-3 top-[-5px] px-2 bg-white text-textSecondary dark:bg-gray-800 ">
+              <label className="components-input-label absolute left-3 top-[-5px] px-2 bg-mainWhite text-textSecondary dark:bg-darkBg">
                 Confirm Password
               </label>
               {errors.rePassword && (
@@ -146,11 +146,11 @@ function Register() {
 
             <div className="relative">
               <input
-                type="tel"
-                className="border h-10 md:h-12 lg:h-14 w-72 sm:w-96 md:w-80 lg:w-96 rounded-lg focus:outline-none px-4 text-xs bg-white dark:bg-gray-800 dark:border-textSecondary dark:text-white"
+                type="text"
+                className="border h-10 md:h-12 lg:h-14 w-72 sm:w-96 md:w-80 lg:w-96 rounded-lg focus:outline-none px-4 text-xs bg-mainWhite dark:bg-darkBg dark:border-textSecondary dark:text-white"
                 {...register("phone")}
               />
-              <label className="components-input-label absolute left-3 top-[-5px] px-2 bg-white text-textSecondary dark:bg-gray-800 ">
+              <label className="components-input-label absolute left-3 top-[-5px] px-2 bg-mainWhite text-textSecondary dark:bg-darkBg">
                 Phone
               </label>
               {errors.phone && <InputError error={errors.phone.message} />}

@@ -2,8 +2,8 @@ import DarkModeList from "../DarkModeList.tsx/DarkModeList";
 
 function Navbar() {
   return (
-    <nav className="shadow-custom dark:shadow-custom-dark h-16 w-full py-3 px-6 flex justify-between items-center">
-      <h2>U-commerce</h2>
+    <nav className=" h-16 w-full py-3 px-6 flex justify-between items-center">
+      <button className="bg-red">Logout {"❌"}</button>
       <ul className="flex gap-4 items-center">
         <DarkModeList />
         <li className="cursor-pointer w-10 h-10">
