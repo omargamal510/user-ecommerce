@@ -1,5 +1,4 @@
 import { Navigate } from "react-router-dom";
-import useAuth from "../../hooks/useAuth";
 import { useContext } from "react";
 import TokenContext from "../../contexts/TokenContext";
 
@@ -8,8 +7,6 @@ interface PrivateRouteProps {
 }
 
 function PrivateRoute({ children }: PrivateRouteProps) {
-  const { isAuthenticated } = useAuth();
-
   const { token } = useContext(TokenContext);
 
   if (!token) {

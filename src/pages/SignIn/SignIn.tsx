@@ -1,30 +1,23 @@
 import { useContext, useEffect, useState } from "react";
-import { set, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { RegisterResponse } from "../../types/auth";
 import TokenContext from "../../contexts/TokenContext";
-import InputError from "../../ui/InputError";
+import InputError from "../../ui/InputError/InputError";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import Spinner from "../../ui/Spinner";
+import Spinner from "../../ui/Spinner/Spinner";
 
 import DarkModeList from "../../components/DarkModeList.tsx/DarkModeList";
 import { loginData } from "../../types/auth";
 import RegisterImage from "../../components/RegisterImage/RegisterImage/RegisterImage";
-import RegisterHeader from "../../components/RegisterHeader/RegisterHeader";
 import { useNavigate } from "react-router-dom";
-import {
-  getCookie,
-  setCookie,
-} from "../../components/CookieHandler/CookieHandler";
-import { Link } from "react-router-dom";
-import useAuth from "../../hooks/useAuth";
-import LoginRegisterSwitch from "../../ui/LoginRegisterSwitch";
+import { setCookie } from "../../components/CookieHandler/CookieHandler";
+import LoginRegisterSwitch from "../../ui/LoginRegisterSwitch/LoginRegisterSwitch";
 
 const baseUrl: string = import.meta.env.VITE_BASE_URL;
 
 function SignIn() {
   const { token, setToken } = useContext(TokenContext);
-  const { isAuthenticated } = useAuth();
   const [loginError, setLoginError] = useState<string>("");
   const navigate = useNavigate();
 
@@ -57,13 +50,12 @@ function SignIn() {
       const result: RegisterResponse = await response.json();
 
       if (response.ok) {
-        const token = result.token; // Get the token from the result
-        setToken(token); // Update state with the token
+        const token = result.token;
+        setToken(token);
         console.log("Sign-in success", result);
 
         setCookie("user-token", token, { path: "/", maxAge: 60 * 60 * 24 * 7 });
       } else {
-        // Handle and display backend error messages directly
         setLoginError(result.message || "Form submission failed");
         console.error("Form submission failed", result);
       }

@@ -2,17 +2,17 @@ import { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { RegisterData, RegisterResponse } from "../../types/auth";
 import TokenContext from "../../contexts/TokenContext";
-import InputError from "../../ui/InputError";
+import InputError from "../../ui/InputError/InputError";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import Spinner from "../../ui/Spinner";
+import Spinner from "../../ui/Spinner/Spinner";
 
 import DarkModeList from "../../components/DarkModeList.tsx/DarkModeList";
 import RegisterImage from "../../components/RegisterImage/RegisterImage/RegisterImage";
 import RegisterHeader from "../../components/RegisterHeader/RegisterHeader";
 import { setCookie } from "../../components/CookieHandler/CookieHandler";
 import { useNavigate } from "react-router-dom";
-import LoginRegisterSwitch from "../../ui/LoginRegisterSwitch";
+import LoginRegisterSwitch from "../../ui/LoginRegisterSwitch/LoginRegisterSwitch";
 
 const baseUrl: string = import.meta.env.VITE_BASE_URL;
 
