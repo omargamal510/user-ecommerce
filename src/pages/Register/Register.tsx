@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { RegisterData, RegisterResponse } from "../../types/auth";
 import TokenContext from "../../contexts/TokenContext";
@@ -10,12 +10,17 @@ import Spinner from "../../ui/Spinner";
 import DarkModeList from "../../components/DarkModeList.tsx/DarkModeList";
 import RegisterImage from "../../components/RegisterImage/RegisterImage/RegisterImage";
 import RegisterHeader from "../../components/RegisterHeader/RegisterHeader";
+import { setCookie } from "../../components/CookieHandler/CookieHandler";
+import { useNavigate } from "react-router-dom";
+import LoginRegisterSwitch from "../../ui/LoginRegisterSwitch";
 
 const baseUrl: string = import.meta.env.VITE_BASE_URL;
 
 function Register() {
-  const { setToken } = useContext(TokenContext);
+  const { token, setToken } = useContext(TokenContext);
   const [registerError, setRegisterError] = useState<string>("");
+
+  const navigate = useNavigate();
 
   const registerSchema = z
     .object({
@@ -68,8 +73,11 @@ function Register() {
       const result: RegisterResponse = await response.json();
 
       if (response.ok) {
-        setToken(result.token);
+        const token = result.token;
+        setToken(token);
         console.log("Registration success", result);
+
+        setCookie("user-token", token, { path: "/", maxAge: 60 * 60 * 24 * 7 });
       } else {
         // Handle and display backend error messages directly
         setRegisterError(result.message || "Form submission failed");
@@ -163,6 +171,11 @@ function Register() {
             >
               {isSubmitting ? <Spinner /> : "Submit"}
             </button>
+            <LoginRegisterSwitch
+              text={"Already have an account ? "}
+              linkText={"Sign in"}
+              linkPath="signin"
+            />
 
             {registerError && <InputError error={registerError} />}
           </form>

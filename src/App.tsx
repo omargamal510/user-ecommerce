@@ -19,17 +19,6 @@ interface CountContextType {
 const Home = lazy(() => import("./pages/Home/Home"));
 
 function App() {
-  // console.log(import.meta.env.VITE_BASE_URL);
-
-  // let x: any = (document.cookie =
-  //   "token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzYmFhNjRiMzk5NDYzMjE3NjEyMWZmZSIsIm5hbWUiOiJBaG1lZCBBYmQgQWwtTXV0aSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNjc4MjMyOTMxLCJleHAiOjE2ODYwMDg5MzF9.xn9aRihrI7eJQYgJSHgQMKDK2pcu8Ii_0_8xMV6K7hk; expires=Fri, 31 Dec 2024 23:59:59 GMT; path=/");
-
-  // const [cookie, setCookie] = useState<string>(x);
-
-  // let cookieSplit = cookie.split(";");
-  // let cookieSplit2 = cookieSplit[0].split("=");
-  // console.log("token : ", cookieSplit2[1]);
-
   const { token } = useContext(TokenContext);
   const { isAuthenticated } = useAuth();
 
@@ -43,19 +32,8 @@ function App() {
     <>
       <Router>
         <Routes>
-          <Route path="/signin" element={<SignIn />} />
           <Route path="/register" element={<Register />} />
-
-          {/* <Route
-            path="/"
-            element={
-                element={
-                  <Outlet>
-                    <Home />
-                  </Outlet>
-                }
-            }
-          ></Route> */}
+          <Route path="/signin" element={<SignIn />} />
 
           <Route
             path="/"

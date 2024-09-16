@@ -18,6 +18,7 @@ import {
 } from "../../components/CookieHandler/CookieHandler";
 import { Link } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
+import LoginRegisterSwitch from "../../ui/LoginRegisterSwitch";
 
 const baseUrl: string = import.meta.env.VITE_BASE_URL;
 
@@ -58,12 +59,9 @@ function SignIn() {
       if (response.ok) {
         const token = result.token; // Get the token from the result
         setToken(token); // Update state with the token
-        localStorage.setItem("userToken", token);
         console.log("Sign-in success", result);
 
         setCookie("user-token", token, { path: "/", maxAge: 60 * 60 * 24 * 7 });
-
-        navigate("/");
       } else {
         // Handle and display backend error messages directly
         setLoginError(result.message || "Form submission failed");
@@ -84,7 +82,6 @@ function SignIn() {
 
   return (
     <div className="register">
-      <Link to="/register">Home</Link>
       <div className="register-container flex justify-center">
         <div className="register-form flex flex-col justify-center items-center w-full md:w-1/2 h-screen gap-6 p-10">
           <form
@@ -92,14 +89,11 @@ function SignIn() {
             className="flex-col flex gap-6 p-10"
           >
             <DarkModeList />
-
             <div className="flex-col flex gap-2 mb-5">
               <h2 className="typography-h4 ">Welcome👋</h2>
               <p className="">Sign in to your dashboard</p>
             </div>
-
             {/* <RegisterHeader /> later we will make it based on the route itself */}
-
             <div className="relative">
               <input
                 type="text"
@@ -111,7 +105,6 @@ function SignIn() {
               </label>
               {errors.email && <InputError error={errors.email.message} />}
             </div>
-
             <div className="relative">
               <input
                 type="text"
@@ -132,7 +125,11 @@ function SignIn() {
             >
               {isSubmitting ? <Spinner /> : "Login"}
             </button>
-
+            <LoginRegisterSwitch
+              text={"Doesn't have an account ?"}
+              linkText={"Sign Up"}
+              linkPath="register"
+            />
             {loginError && <InputError error={loginError} />}
           </form>
         </div>
