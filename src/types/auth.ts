@@ -20,3 +20,12 @@ export type loginData = {
   email: "string";
   password: "string";
 };
+
+export type forgotPasswordSucces = {
+  statusMsg: string;
+  message: string;
+};
+
+export type ResetCode = {
+  resetCode: string;
+};

@@ -3,11 +3,13 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Outlet from "./components/Outlet/Outlet";
 import NotFound from "./pages/NotFound/NotFound";
 import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
+import ForgotPassword from "./pages/ForgotPassword/ForgotPassword";
+import VerifyReset from "./pages/VerifyReset/VerifyReset";
 
 const Home = lazy(() => import("./pages/Home/Home"));
 
 const SignIn = lazy(() => import("./pages/SignIn/SignIn"));
-const Register = lazy(() => import("./pages/SignIn/SignIn"));
+const Register = lazy(() => import("./pages/Register/Register"));
 
 function App() {
   return (
@@ -15,6 +17,8 @@ function App() {
       <Router>
         <Routes>
           <Route path="/register" element={<Register />} />
+          <Route path="/forgotpassword" element={<ForgotPassword />} />
+          <Route path="/verifyreset" element={<VerifyReset />} />
           <Route path="/signin" element={<SignIn />} />
 
           <Route

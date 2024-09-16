@@ -13,6 +13,7 @@ import RegisterImage from "../../components/RegisterImage/RegisterImage/Register
 import { useNavigate } from "react-router-dom";
 import { setCookie } from "../../components/CookieHandler/CookieHandler";
 import LoginRegisterSwitch from "../../ui/LoginRegisterSwitch/LoginRegisterSwitch";
+import { Link } from "react-router-dom";
 
 const baseUrl: string = import.meta.env.VITE_BASE_URL;
 
@@ -76,47 +77,52 @@ function SignIn() {
     <div className="register">
       <div className="register-container flex justify-center">
         <div className="register-form flex flex-col justify-center items-center w-full md:w-1/2 h-screen gap-6 p-10">
-          <form
-            onSubmit={handleSubmit(onSubmit)}
-            className="flex-col flex gap-6 p-10"
-          >
-            <DarkModeList />
-            <div className="flex-col flex gap-2 mb-5">
-              <h2 className="typography-h4 ">Welcome👋</h2>
-              <p className="">Sign in to your dashboard</p>
+          <form onSubmit={handleSubmit(onSubmit)} className="">
+            <div className="flex-col flex py-2 gap-6">
+              <DarkModeList />
+              <div className="flex-col flex gap-2 mb-5">
+                <h2 className="typography-h4 ">Welcome👋</h2>
+                <p className="">Sign in to your dashboard</p>
+              </div>
+              {/* <RegisterHeader /> later we will make it based on the route itself */}
+              <div className="relative">
+                <input
+                  type="text"
+                  className="border h-10 md:h-12 lg:h-14 w-72 sm:w-96 md:w-80 lg:w-96 rounded-lg focus:outline-none px-4 text-xs bg-mainWhite dark:bg-darkBg dark:border-textSecondary dark:text-white"
+                  {...register("email")}
+                />
+                <label className="components-input-label absolute left-3 top-[-5px] px-2 bg-mainWhite text-textSecondary dark:bg-darkBg">
+                  Email
+                </label>
+                {errors.email && <InputError error={errors.email.message} />}
+              </div>
+              <div className="relative">
+                <input
+                  type="text"
+                  className="border h-10 md:h-12 lg:h-14 w-72 sm:w-96 md:w-80 lg:w-96 rounded-lg focus:outline-none px-4 text-xs bg-mainWhite dark:bg-darkBg dark:border-textSecondary dark:text-white"
+                  {...register("password")}
+                />
+                <label className="components-input-label absolute left-3 top-[-5px] px-2 bg-mainWhite text-textSecondary dark:bg-darkBg">
+                  Password
+                </label>
+                {errors.password && (
+                  <InputError error={errors.password.message} />
+                )}
+              </div>
+              <button
+                disabled={isSubmitting}
+                type="submit"
+                className="bg-primaryMain h-12 rounded-lg text-white text-sm "
+              >
+                {isSubmitting ? <Spinner /> : "Login"}
+              </button>
             </div>
-            {/* <RegisterHeader /> later we will make it based on the route itself */}
-            <div className="relative">
-              <input
-                type="text"
-                className="border h-10 md:h-12 lg:h-14 w-72 sm:w-96 md:w-80 lg:w-96 rounded-lg focus:outline-none px-4 text-xs bg-mainWhite dark:bg-darkBg dark:border-textSecondary dark:text-white"
-                {...register("email")}
-              />
-              <label className="components-input-label absolute left-3 top-[-5px] px-2 bg-mainWhite text-textSecondary dark:bg-darkBg">
-                Email
-              </label>
-              {errors.email && <InputError error={errors.email.message} />}
-            </div>
-            <div className="relative">
-              <input
-                type="text"
-                className="border h-10 md:h-12 lg:h-14 w-72 sm:w-96 md:w-80 lg:w-96 rounded-lg focus:outline-none px-4 text-xs bg-mainWhite dark:bg-darkBg dark:border-textSecondary dark:text-white"
-                {...register("password")}
-              />
-              <label className="components-input-label absolute left-3 top-[-5px] px-2 bg-mainWhite text-textSecondary dark:bg-darkBg">
-                Password
-              </label>
-              {errors.password && (
-                <InputError error={errors.password.message} />
-              )}
-            </div>
-            <button
-              disabled={isSubmitting}
-              type="submit"
-              className="bg-primaryMain h-12 rounded-lg text-white text-sm "
-            >
-              {isSubmitting ? <Spinner /> : "Login"}
-            </button>
+
+            <Link to={"/forgotpassword"}>
+              <span className="underline text-primaryMain">
+                Forgot password ?
+              </span>
+            </Link>
             <LoginRegisterSwitch
               text={"Doesn't have an account ?"}
               linkText={"Sign Up"}
