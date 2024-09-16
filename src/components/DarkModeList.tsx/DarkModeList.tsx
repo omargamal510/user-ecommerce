@@ -1,12 +1,12 @@
 import { Dropdown, DropdownChangeEvent } from "primereact/dropdown";
-import { useEffect, useState } from "react";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
 
 interface Mode {
   name: string;
   code: string;
 }
 
-export let citySelected: string | undefined = "light";
+export let modeSelected: string | undefined = "light";
 const mySystemMode: boolean = window.matchMedia(
   "(prefers-color-scheme: dark)"
 ).matches;
@@ -26,14 +26,14 @@ function DarkModeList() {
 
   // Save theme to localStorage and apply the dark mode class
   useEffect(() => {
-    citySelected = selectedTheme?.code;
+    modeSelected = selectedTheme?.code;
 
     function darkModeHandler() {
-      if (citySelected === "light") {
+      if (modeSelected === "light") {
         document.documentElement.classList.remove("dark");
-      } else if (citySelected === "dark") {
+      } else if (modeSelected === "dark") {
         document.documentElement.classList.add("dark");
-      } else if (citySelected === "system") {
+      } else if (modeSelected === "system") {
         if (mySystemMode) {
           document.documentElement.classList.add("dark");
         } else {
@@ -42,7 +42,7 @@ function DarkModeList() {
       }
     }
 
-    localStorage.setItem("appTheme", selectedTheme?.code || "light");
+    localStorage.setItem("appTheme", modeSelected || "light");
     darkModeHandler();
   }, [selectedTheme]);
 

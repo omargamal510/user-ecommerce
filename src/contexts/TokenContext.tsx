@@ -1,22 +1,25 @@
 import { createContext, FC, ReactNode, useState } from "react";
+import { getCookie } from "../components/CookieHandler/CookieHandler";
 
 interface TokenContextType {
-  token: string;
-  setToken: React.Dispatch<React.SetStateAction<string>>;
+  token: string | undefined;
+  setToken: React.Dispatch<React.SetStateAction<string | undefined>>;
 }
 
-// Create the context with a default value of undefined
+// Initialize with undefined to properly reflect the absence of a token
 const TokenContext = createContext<TokenContextType>({
-  token: "",
+  token: undefined,
   setToken: () => {},
 });
 
-type TokenChildrenProp = {
-  children: ReactNode;
-};
+const tokenCookie = getCookie("user-token");
 
-export const TokenContextProvider: FC<TokenChildrenProp> = ({ children }) => {
-  const [token, setToken] = useState<string>("");
+// TokenContextProvider component
+export const TokenContextProvider: FC<{ children: ReactNode }> = ({
+  children,
+}) => {
+  // Initialize state with the token from cookies if available
+  const [token, setToken] = useState<string | undefined>(tokenCookie);
 
   return (
     <TokenContext.Provider value={{ token, setToken }}>

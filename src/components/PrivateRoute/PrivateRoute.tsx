@@ -1,15 +1,24 @@
 import { Navigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
+import { useContext } from "react";
+import TokenContext from "../../contexts/TokenContext";
 
 interface PrivateRouteProps {
-  element: JSX.Element;
+  children: JSX.Element;
 }
 
-function PrivateRoute({ element }: PrivateRouteProps) {
+function PrivateRoute({ children }: PrivateRouteProps) {
   const { isAuthenticated } = useAuth();
 
-  return element;
-  //   return isAuthenticated ? element : <Navigate to="/signin" />;
+  const { token } = useContext(TokenContext);
+
+  if (!token) {
+    // Redirect to sign-in page if not authenticated
+    return <Navigate to="/signin" />;
+  }
+
+  // Render the element if authenticated
+  return children;
 }
 
 export default PrivateRoute;

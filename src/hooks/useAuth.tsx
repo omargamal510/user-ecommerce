@@ -1,11 +1,12 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+import TokenContext from "../contexts/TokenContext";
 
 function useAuth() {
+  const { token } = useContext(TokenContext);
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
 
   useEffect(() => {
     const checkAuth = () => {
-      const token = localStorage.getItem("userToken");
       if (token) {
         setIsAuthenticated(true);
       } else {
@@ -14,16 +15,7 @@ function useAuth() {
     };
 
     checkAuth();
-
-    window.addEventListener("storage", checkAuth);
-
-    return () => {
-      window.removeEventListener("storage", checkAuth);
-    };
-  }, []);
-
-  console.log(isAuthenticated);
-
+  }, [token]); // Adjusted dependency array
   return { isAuthenticated };
 }
 

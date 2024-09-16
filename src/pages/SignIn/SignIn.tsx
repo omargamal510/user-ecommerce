@@ -1,5 +1,5 @@
-import { useContext, useState } from "react";
-import { useForm } from "react-hook-form";
+import { useContext, useEffect, useState } from "react";
+import { set, useForm } from "react-hook-form";
 import { RegisterResponse } from "../../types/auth";
 import TokenContext from "../../contexts/TokenContext";
 import InputError from "../../ui/InputError";
@@ -12,11 +12,18 @@ import { loginData } from "../../types/auth";
 import RegisterImage from "../../components/RegisterImage/RegisterImage/RegisterImage";
 import RegisterHeader from "../../components/RegisterHeader/RegisterHeader";
 import { useNavigate } from "react-router-dom";
+import {
+  getCookie,
+  setCookie,
+} from "../../components/CookieHandler/CookieHandler";
+import { Link } from "react-router-dom";
+import useAuth from "../../hooks/useAuth";
 
 const baseUrl: string = import.meta.env.VITE_BASE_URL;
 
 function SignIn() {
   const { token, setToken } = useContext(TokenContext);
+  const { isAuthenticated } = useAuth();
   const [loginError, setLoginError] = useState<string>("");
   const navigate = useNavigate();
 
@@ -51,8 +58,10 @@ function SignIn() {
       if (response.ok) {
         const token = result.token; // Get the token from the result
         setToken(token); // Update state with the token
-        localStorage.setItem("userToken", token); // Store the token directly
+        localStorage.setItem("userToken", token);
         console.log("Sign-in success", result);
+
+        setCookie("user-token", token, { path: "/", maxAge: 60 * 60 * 24 * 7 });
 
         navigate("/");
       } else {
@@ -65,8 +74,17 @@ function SignIn() {
     }
   };
 
+  useEffect(() => {
+    if (token) {
+      navigate("/");
+    } else {
+      navigate("/signin");
+    }
+  }, [token]);
+
   return (
     <div className="register">
+      <Link to="/register">Home</Link>
       <div className="register-container flex justify-center">
         <div className="register-form flex flex-col justify-center items-center w-full md:w-1/2 h-screen gap-6 p-10">
           <form
