@@ -13,8 +13,6 @@ import RegisterHeader from "../../components/RegisterHeader/RegisterHeader";
 import { setCookie } from "../../components/CookieHandler/CookieHandler";
 import { useNavigate } from "react-router-dom";
 import LoginRegisterSwitch from "../../ui/LoginRegisterSwitch/LoginRegisterSwitch";
-import { Link } from "react-router-dom";
-
 const baseUrl: string = import.meta.env.VITE_BASE_URL;
 
 function Register() {
@@ -88,6 +86,14 @@ function Register() {
       console.error("An unexpected error occurred: ", error.message || error);
     }
   };
+
+  useEffect(() => {
+    if (token) {
+      navigate("/");
+    } else {
+      navigate("/register");
+    }
+  }, [token]);
 
   return (
     <div className="register">

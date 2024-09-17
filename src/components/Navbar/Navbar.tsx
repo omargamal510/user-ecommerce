@@ -12,7 +12,7 @@ function Navbar() {
   }
 
   return (
-    <nav className=" h-16 w-full py-3 px-6 flex justify-between items-center">
+    <nav className=" h-16 w-full py-3 px-7 flex justify-between shadow-custom bg-white items-center">
       <button onClick={() => handleLogout()} className="bg-red">
         Logout {"❌"}
       </button>

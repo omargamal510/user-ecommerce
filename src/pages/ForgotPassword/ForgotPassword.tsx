@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { forgotPasswordSucces, RegisterResponse } from "../../types/auth";
+import { forgotPasswordSucces } from "../../types/auth";
 import InputError from "../../ui/InputError/InputError";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";

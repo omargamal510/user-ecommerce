@@ -5,15 +5,7 @@ import SideBar from "../SideBar/SideBar";
 
 const Outlet = ({ children }: any) => {
   return (
-    // <div className="flex">
-    //   <SideBar />
-    //   <div className="flex-1">
-    //     <Navbar />
-    //     <main>{children}</main>
-    //   </div>
-    // </div>
-
-    <div className="px-5 h-screen  flex flex-col">
+    <div className=" h-screen  flex flex-col">
       <Navbar />
       <main className="flex gap-6 h-full">
         <SideBar />

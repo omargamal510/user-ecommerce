@@ -21,6 +21,7 @@ export const theme = {
     boxShadow: {
       custom: "0px 4px 6px 0px #64748B1F",
       "custom-dark": "0px 4px 6px 0px rgba(255, 255, 255, 0.1)", // Dark mode shadow (example)
+      "home-element": "0px 1px 2px 0px #64748B1A",
     },
   },
 };
