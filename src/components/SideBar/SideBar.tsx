@@ -1,8 +1,9 @@
 import { NavLink } from "react-router-dom";
+import Logout from "../../ui/Logout/Logout";
 
 function SideBar() {
   return (
-    <div className="h-full bg-neutral/900 w-72 dark:bg-dark2Bg dark:shadow-custom-dark rounded-tl-md rounded-tr-md hidden md:block">
+    <div className="h-full bg-neutral/900 w-72 dark:bg-dark2Bg dark:shadow-custom-dark  hidden md:block">
       <div className="side-bar-container">
         <div className="top-section flex flex-col items-center justify-center py-5 border-b border-[#1F2937] dark:border-white">
           <h2 className="text-white text-xl">User E-commerce</h2>
@@ -13,7 +14,7 @@ function SideBar() {
           <NavLink
             to="/"
             className={({ isActive }) =>
-              `text-neutral-300 w-full block py-2 rounded-lg px-3 ${
+              `text-white w-full block py-2 rounded-lg px-3 ${
                 isActive
                   ? "bg-activeNavLink text-secondaryMain dark:bg-textPrimary dark:text-white"
                   : ""
@@ -26,7 +27,7 @@ function SideBar() {
           <NavLink
             to="/products"
             className={({ isActive }) =>
-              `text-neutral-300 w-full block py-2 rounded-lg px-3 ${
+              `text-white w-full block py-2 rounded-lg px-3 ${
                 isActive ? "bg-activeNavLink text-secondaryMain" : ""
               }`
             }
@@ -37,12 +38,20 @@ function SideBar() {
           <NavLink
             to="brands"
             className={({ isActive }) =>
-              `text-neutral-300 w-full block py-2 rounded-lg px-3 ${
+              `text-white w-full block py-2 rounded-lg px-3 ${
                 isActive ? "bg-activeNavLink text-secondaryMain" : ""
               }`
             }
           >
             Brands
+          </NavLink>
+
+          <NavLink
+            to="/"
+            className="text-white w-full block py-2 rounded-lg px-3 
+           "
+          >
+            <Logout />
           </NavLink>
         </div>
       </div>

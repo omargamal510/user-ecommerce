@@ -18,7 +18,7 @@ import { Link } from "react-router-dom";
 const baseUrl: string = import.meta.env.VITE_BASE_URL;
 
 function SignIn() {
-  const { token, setToken } = useContext(TokenContext);
+  const { token, setToken, setUserName } = useContext(TokenContext);
   const [loginError, setLoginError] = useState<string>("");
   const navigate = useNavigate();
 
@@ -53,6 +53,7 @@ function SignIn() {
       if (response.ok) {
         const token = result.token;
         setToken(token);
+        localStorage.setItem("userName", JSON.stringify(result.user.name));
         console.log("Sign-in success", result);
 
         setCookie("user-token", token, { path: "/", maxAge: 60 * 60 * 24 * 7 });

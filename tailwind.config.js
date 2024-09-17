@@ -12,6 +12,7 @@ export const theme = {
       "neutral/900": "#111827",
       darkBg: "#1e1e2d",
       dark2Bg: "#de4ecd",
+      darkBg3: "#27293d",
       activeNavLink: "rgba(255, 255, 255, 0.08)",
       secondaryMain: "#10B981",
     },
