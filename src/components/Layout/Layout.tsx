@@ -2,7 +2,7 @@ import { Outlet as RouterOutlet } from "react-router-dom";
 import Navbar from "../Navbar/Navbar";
 import SideBar from "../SideBar/SideBar";
 
-const Outlet = () => {
+const Layout = () => {
   return (
     <div className="h-screen flex flex-col">
       <Navbar />
@@ -16,4 +16,4 @@ const Outlet = () => {
   );
 };
 
-export default Outlet;
+export default Layout;
