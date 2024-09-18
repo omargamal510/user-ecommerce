@@ -7,7 +7,6 @@ import ForgotPassword from "./pages/ForgotPassword/ForgotPassword";
 import VerifyReset from "./pages/VerifyReset/VerifyReset";
 
 const Home = lazy(() => import("./pages/Home/Home"));
-
 const SignIn = lazy(() => import("./pages/SignIn/SignIn"));
 const Register = lazy(() => import("./pages/Register/Register"));
 const Products = lazy(() => import("./pages/Products/Products"));

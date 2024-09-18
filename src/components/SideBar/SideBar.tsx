@@ -14,10 +14,10 @@ function SideBar() {
           <NavLink
             to="/"
             className={({ isActive }) =>
-              `text-white w-full block py-2 rounded-lg px-3 ${
+              `w-full block py-2 rounded-lg px-3 ${
                 isActive
                   ? "bg-activeNavLink text-secondaryMain dark:bg-textPrimary dark:text-white"
-                  : ""
+                  : "text-white"
               }`
             }
           >
@@ -27,8 +27,10 @@ function SideBar() {
           <NavLink
             to="/products"
             className={({ isActive }) =>
-              `text-white w-full block py-2 rounded-lg px-3 ${
-                isActive ? "bg-activeNavLink text-secondaryMain" : ""
+              `w-full block py-2 rounded-lg px-3 ${
+                isActive
+                  ? "bg-activeNavLink text-secondaryMain dark:bg-textPrimary dark:text-white"
+                  : "text-white"
               }`
             }
           >
@@ -38,8 +40,10 @@ function SideBar() {
           <NavLink
             to="brands"
             className={({ isActive }) =>
-              `text-white w-full block py-2 rounded-lg px-3 ${
-                isActive ? "bg-activeNavLink text-secondaryMain" : ""
+              `w-full block py-2 rounded-lg px-3 ${
+                isActive
+                  ? "bg-activeNavLink text-secondaryMain dark:bg-textPrimary dark:text-white"
+                  : "text-white"
               }`
             }
           >

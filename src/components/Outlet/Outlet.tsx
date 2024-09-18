@@ -8,7 +8,6 @@ const Outlet = () => {
       <Navbar />
       <main className="flex gap-6 h-full">
         <SideBar />
-        {/* React Router's Outlet component to render child routes */}
         <div className="flex-1">
           <RouterOutlet />
         </div>
