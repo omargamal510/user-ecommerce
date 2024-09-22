@@ -60,13 +60,13 @@ const options: any = {
 
 function CircleChart() {
   return (
-    <div className="rounded-lg bg-white ">
+    <div className="rounded-lg bg-white dark:bg-darkBg3 pb-7">
       <div className="flex justify-center flex-col items-center gap-4">
-        <h2 className="py-8 px-6 font-bold self-start border-b w-full">
+        <h2 className="py-8 px-6 font-bold self-start border-b dark:border-darkBg w-full">
           Traffic by device
         </h2>
 
-        <div className="" style={{ width: "250px", height: "250px" }}>
+        <div className="w-60 h-60">
           <Doughnut data={data} options={options} />
         </div>
 
@@ -79,7 +79,7 @@ function CircleChart() {
               <img src={d.imgSrc} alt={`${d.title} icon`} />
               <p>{d.title}</p>
               <p style={{ color: d.color }} className="text-3xl font-bold">
-                {d.percentage}
+                {d.percentage}%
               </p>
             </section>
           ))}

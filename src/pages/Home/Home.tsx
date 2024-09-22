@@ -47,7 +47,7 @@ function Home() {
           </div>
 
           <div className="charts grid grid-cols-12 gap-4 justify-center">
-            <div className="col-span-3">
+            <div className="col-span-12 md:col-span-6 xl:col-span-3">
               <CircleChart />
             </div>
           </div>
