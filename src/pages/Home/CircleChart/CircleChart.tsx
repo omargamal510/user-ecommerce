@@ -59,12 +59,12 @@ const options: any = {
 function CircleChart() {
   return (
     <div className="rounded-lg bg-white dark:bg-darkBg3 pb-7 h-full">
-      <div className="flex justify-center flex-col items-center gap-4">
+      <div className="flex justify-center flex-col items-center gap-4 ">
         <h2 className="py-8 px-6 font-bold self-start border-b dark:border-darkBg w-full">
           Traffic by device
         </h2>
 
-        <div className="w-60 h-60">
+        <div className="w-40 h-48 lg:w-60 lg:h-60">
           <Doughnut data={data} options={options} />
         </div>
 

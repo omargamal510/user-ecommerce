@@ -41,3 +41,7 @@ body p {
 .custom-container {
   padding: 0px 15px;
 }
+
+.font-bastarda {
+  font-family: "Jacquarda Bastarda 9", serif;
+}

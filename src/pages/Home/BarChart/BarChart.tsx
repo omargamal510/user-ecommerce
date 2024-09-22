@@ -31,15 +31,16 @@ const data = {
       backgroundColor: "#1665D8",
       borderColor: "#1665D8",
       borderWidth: 1,
-      barThickness: 5, // Adjust this value to control thickness
+      barThickness: 10,
     },
+
     {
       label: "My Second Dataset",
       data: [45, 39, 60, 71, 46, 35, 30],
       backgroundColor: "#FF6384",
       borderColor: "#FF6384",
       borderWidth: 1,
-      barThickness: 5, // Adjust this value to control thickness
+      barThickness: 10,
     },
   ],
 };
@@ -49,8 +50,8 @@ const options = {
   scales: {
     x: {
       stacked: false,
-      barPercentage: 0.2, // Adjusts the width of each bar
-      categoryPercentage: 0.2, // Adjusts the spacing between categories
+      barPercentage: 0,
+      categoryPercentage: 0.6,
     },
     y: {
       beginAtZero: true,
@@ -58,10 +59,14 @@ const options = {
   },
 };
 
+const windowWidth: number = window.innerWidth;
+
+const isTrue: boolean = windowWidth <= 400;
+
 function BarChart() {
   return (
-    <div className="text-center w-full">
-      <Bar data={data} options={options} />
+    <div className="  md:w-full md:h-full">
+      <Bar data={data} options={options} height={isTrue ? 250 : 0} />
     </div>
   );
 }

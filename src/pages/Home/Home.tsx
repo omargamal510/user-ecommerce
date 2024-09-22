@@ -33,7 +33,7 @@ function Home() {
   return (
     <>
       <div className=" w-full">
-        <div className="home-container custom-container flex flex-col gap-6 mt-6">
+        <div className="home-container custom-container flex flex-col gap-10 mt-6">
           {/* <div className="num-stats-container  flex gap-3 w-full p-5"> */}
 
           <div className="grid grid-cols-12 gap-4 justify-center  ">
@@ -47,12 +47,12 @@ function Home() {
             ))}
           </div>
 
-          <div className="charts grid grid-cols-12 gap-4 justify-center">
-            <div className="col-span-12 xl:col-span-9">
+          <div className="charts grid grid-cols-12 gap-4 items-center justify-center">
+            <div className="col-span-12  xl:col-span-9">
               <BarChart />
             </div>
 
-            <div className="col-span-12 xl:col-span-3">
+            <div className="col-span-12 xl:col-span-3 h-full">
               <CircleChart />
             </div>
           </div>

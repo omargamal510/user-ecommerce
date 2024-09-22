@@ -6,7 +6,7 @@ function SideBar() {
     <div className="h-full mt-16 bg-neutral/900 w-72 dark:bg-dark2Bg dark:shadow-custom-dark fixed left-0 mr-72  hidden md:block">
       <div className="side-bar-container">
         <div className="top-section flex flex-col items-center justify-center py-5 border-b border-[#1F2937] dark:border-white">
-          <h2 className="text-white text-xl">User E-commerce</h2>
+          <h2 className="text-white text-xl font-bastarda">User E-commerce</h2>
           {/* <p className="text-sm">Manage it easier now !</p> */}
         </div>
 
