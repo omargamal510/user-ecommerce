@@ -1,4 +1,5 @@
 import { NumStateObjectArray } from "../../types/home";
+import CircleChart from "./CircleChart/CircleChart";
 import NumState from "./NumState/NumState";
 
 const NumStateData: NumStateObjectArray = [
@@ -31,10 +32,10 @@ function Home() {
   return (
     <>
       <div className=" w-full">
-        <div className="home-container">
+        <div className="home-container custom-container flex flex-col gap-6 mt-6">
           {/* <div className="num-stats-container  flex gap-3 w-full p-5"> */}
 
-          <div className="grid grid-cols-12 gap-4 p-5">
+          <div className="grid grid-cols-12 gap-4 justify-center  ">
             {NumStateData.map((s, index) => (
               <NumState
                 title={s.title}
@@ -45,12 +46,11 @@ function Home() {
             ))}
           </div>
 
-          {/* <div className="grid grid-cols-12 gap-4">
-            <div className="bg-blue-200 p-4 col-span-3">Row 1</div>
-            <div className="bg-blue-300 p-4">Row 2</div>
-            <div className="bg-blue-400 p-4">Row 3</div>
-            <div className="bg-blue-500 p-4">Row 4</div>
-          </div> */}
+          <div className="charts grid grid-cols-12 gap-4 justify-center">
+            <div className="col-span-3">
+              <CircleChart />
+            </div>
+          </div>
         </div>
       </div>
     </>

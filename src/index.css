@@ -37,3 +37,7 @@ body p {
 .p-dropdown-trigger {
   display: none !important;
 }
+
+.custom-container {
+  padding: 0px 15px;
+}
