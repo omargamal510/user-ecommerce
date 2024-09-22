@@ -30,8 +30,6 @@ const devicesData: DeviceDataType = [
 const devicesDataPercetage: number[] = devicesData.map((d) => d.percentage);
 const deviceDataColors: string[] = devicesData.map((d) => d.color);
 
-console.log(devicesData[0].color);
-
 const data = {
   datasets: [
     {
@@ -60,7 +58,7 @@ const options: any = {
 
 function CircleChart() {
   return (
-    <div className="rounded-lg bg-white dark:bg-darkBg3 pb-7">
+    <div className="rounded-lg bg-white dark:bg-darkBg3 pb-7 h-full">
       <div className="flex justify-center flex-col items-center gap-4">
         <h2 className="py-8 px-6 font-bold self-start border-b dark:border-darkBg w-full">
           Traffic by device

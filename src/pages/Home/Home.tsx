@@ -1,4 +1,5 @@
 import { NumStateObjectArray } from "../../types/home";
+import BarChart from "./BarChart/BarChart";
 import CircleChart from "./CircleChart/CircleChart";
 import NumState from "./NumState/NumState";
 
@@ -47,7 +48,11 @@ function Home() {
           </div>
 
           <div className="charts grid grid-cols-12 gap-4 justify-center">
-            <div className="col-span-12 md:col-span-6 xl:col-span-3">
+            <div className="col-span-12 xl:col-span-9">
+              <BarChart />
+            </div>
+
+            <div className="col-span-12 xl:col-span-3">
               <CircleChart />
             </div>
           </div>
