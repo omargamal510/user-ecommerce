@@ -7,7 +7,7 @@ import Product from "./Product";
 const baseUrl: string = import.meta.env.VITE_BASE_URL;
 
 function Products() {
-  const [limit, setLimit] = useState<number>(2);
+  const [limit, setLimit] = useState<number>(20);
   const [page, setPage] = useState<number>(1);
 
   const { data, error, isLoading, isFetching, refetch } = useQuery({
@@ -51,7 +51,7 @@ function Products() {
   return (
     <>
       {/* p._id */}
-      <div>
+      <div className="grid grid-cols-12 gap-4 custom-container my-5">
         {data.data.map((p: any) => (
           <Product
             key={p.id}
