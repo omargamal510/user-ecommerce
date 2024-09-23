@@ -1,14 +1,17 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Loading from "../../components/Loading/Loading";
 import Product from "./Product";
+import Pagination from "../../components/Pagination/Pagination";
+import { toast, ToastContainer } from "react-toastify";
 
 const baseUrl: string = import.meta.env.VITE_BASE_URL;
 
 function Products() {
-  const [limit, setLimit] = useState<number>(20);
+  const [limit, setLimit] = useState<number>(10);
   const [page, setPage] = useState<number>(1);
+  const [pagesNum, setPagesNum] = useState<number>(1);
 
   const { data, error, isLoading, isFetching, refetch } = useQuery({
     queryKey: ["products", limit, page], // Unique query key
@@ -18,14 +21,12 @@ function Products() {
           limit,
           page,
         },
-      }); // params , {params}
-
-      return data; // You can also use "as any" if needed
+      });
+      return data;
     },
   });
 
-  console.log(data);
-
+  // useEffect(() => console.log(data?.results), [data]);
   if (isLoading && isFetching)
     return (
       <div>
@@ -48,21 +49,36 @@ function Products() {
   //   console.log(data);
   // };
 
+  const notify = () => toast("Woow so easy");
+
   return (
     <>
+      <ToastContainer />
       {/* p._id */}
-      <div className="grid grid-cols-12 gap-4 custom-container my-5">
-        {data.data.map((p: any) => (
-          <Product
-            key={p.id}
-            description={p.description}
-            price={p.price}
-            imageCover={p.imageCover}
-            title={p.title}
-          />
-        ))}
+      <div className="products">
+        <div>
+          <button onClick={notify}>Notify!</button>
+        </div>
 
-        {/* <button
+        <Pagination
+          setLimit={setLimit}
+          page={page}
+          setPage={setPage}
+          limit={limit}
+          results={data?.results}
+        />
+        <div className="grid grid-cols-12 gap-4 custom-container my-5">
+          {data.data.map((p: any) => (
+            <Product
+              key={p.id}
+              description={p.description}
+              price={p.price}
+              imageCover={p.imageCover}
+              title={p.title}
+            />
+          ))}
+
+          {/* <button
           onClick={() => handleLimit()}
           className="bg-blue-500 p-3 text-white"
         >
@@ -75,6 +91,7 @@ function Products() {
         >
           Next Page
         </button> */}
+        </div>
       </div>
     </>
   );

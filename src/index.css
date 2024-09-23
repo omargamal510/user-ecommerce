@@ -45,3 +45,12 @@ body p {
 .font-bastarda {
   font-family: "Jacquarda Bastarda 9", serif;
 }
+
+.p-paginator {
+  background-color: transparent;
+}
+
+.p-paginator .p-paginator-page.p-highlight {
+  @apply bg-primaryMain !important;
+  color: white !important; /* Text color for better contrast */
+}

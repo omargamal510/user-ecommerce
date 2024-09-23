@@ -17,8 +17,8 @@ export type RegisterResponse = {
 };
 
 export type loginData = {
-  email: "string";
-  password: "string";
+  email: string;
+  password: string;
 };
 
 export type forgotPasswordSucces = {
