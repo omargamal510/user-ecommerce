@@ -50,7 +50,7 @@ body p {
   background-color: transparent;
 }
 
-.p-paginator .p-paginator-page.p-highlight {
+/* .p-paginator .p-paginator-page.p-highlight {
   @apply bg-primaryMain !important;
-  color: white !important; /* Text color for better contrast */
-}
+  color: white !important;
+} */

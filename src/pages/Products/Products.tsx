@@ -11,7 +11,6 @@ const baseUrl: string = import.meta.env.VITE_BASE_URL;
 function Products() {
   const [limit, setLimit] = useState<number>(10);
   const [page, setPage] = useState<number>(1);
-  const [pagesNum, setPagesNum] = useState<number>(1);
 
   const { data, error, isLoading, isFetching, refetch } = useQuery({
     queryKey: ["products", limit, page], // Unique query key
@@ -26,7 +25,7 @@ function Products() {
     },
   });
 
-  // useEffect(() => console.log(data?.results), [data]);
+  useEffect(() => console.log("page : " + page), [data]);
   if (isLoading && isFetching)
     return (
       <div>

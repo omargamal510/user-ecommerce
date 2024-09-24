@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Paginator, PaginatorPageChangeEvent } from "primereact/paginator";
 
 interface PaginationProps {
@@ -19,19 +19,11 @@ export default function Pagination({
   const [first, setFirst] = useState<number>(0);
   const [rows, setRows] = useState<number>(limit);
 
-  useEffect(() => {
-    console.log(" rows :  " + first);
-    console.log("rows : " + rows);
-    console.log("limit : " + limit);
-    console.log("page : " + page);
-
-    console.log("results : " + results);
-  }, [first]);
-
   const onPageChange = (event: PaginatorPageChangeEvent) => {
     setFirst(event.first);
     setRows(event.rows);
     setLimit(event.rows);
+    setPage(event.first / 10 + 1);
   };
 
   return (
