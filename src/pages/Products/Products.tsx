@@ -5,10 +5,15 @@ import Loading from "../../components/Loading/Loading";
 import Product from "./Product";
 import Pagination from "../../components/Pagination/Pagination";
 import { toast, ToastContainer } from "react-toastify";
+import { useSearchParams } from "react-router-dom";
 
 const baseUrl: string = import.meta.env.VITE_BASE_URL;
 
 function Products() {
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const query = searchParams.get("query") || ""; // Default to an empty string if not found
+
   const [limit, setLimit] = useState<number>(10);
   const [page, setPage] = useState<number>(1);
 
