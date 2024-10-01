@@ -15,13 +15,13 @@ import { setCookie } from "../../components/CookieHandler/CookieHandler";
 import LoginRegisterSwitch from "../../ui/LoginRegisterSwitch/LoginRegisterSwitch";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { tokenTrue } from "../../store/tokenSlice";
+import { tokenTrue } from "../../store/authSlice";
 
 const baseUrl: string = import.meta.env.VITE_BASE_URL;
 
 function SignIn() {
   const dispatch = useDispatch();
-  const token = useSelector((store: any) => store.token.value);
+  const token = useSelector((store: any) => store.auth.token);
   const [loginError, setLoginError] = useState<string>("");
   const navigate = useNavigate();
 
@@ -57,7 +57,10 @@ function SignIn() {
         const authToken = result.token;
         dispatch(tokenTrue(authToken));
         localStorage.setItem("userName", JSON.stringify(result.user.name));
-        setCookie("user-token", token, { path: "/", maxAge: 60 * 60 * 24 * 7 });
+        setCookie("user-token", authToken, {
+          path: "/",
+          maxAge: 60 * 60 * 24 * 7,
+        });
       } else {
         setLoginError(result.message || "Form submission failed");
         console.error("Form submission failed", result);
@@ -68,7 +71,9 @@ function SignIn() {
   };
 
   useEffect(() => {
-    if (token) navigate("/");
+    if (token) {
+      navigate("/");
+    }
   }, [token]);
 
   return (

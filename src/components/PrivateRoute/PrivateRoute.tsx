@@ -1,6 +1,5 @@
 import { Navigate } from "react-router-dom";
-// import { useContext } from "react";
-// import TokenContext from "../../contexts/TokenContext";
+
 import { useSelector } from "react-redux";
 
 interface PrivateRouteProps {
@@ -8,7 +7,7 @@ interface PrivateRouteProps {
 }
 
 function PrivateRoute({ children }: PrivateRouteProps) {
-  const token = useSelector((store: any) => store.token.value);
+  const token = useSelector((store: any) => store.auth.token);
 
   if (!token) {
     // Redirect to sign-in page if not authenticated

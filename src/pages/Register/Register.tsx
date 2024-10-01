@@ -14,14 +14,14 @@ import { setCookie } from "../../components/CookieHandler/CookieHandler";
 import { useNavigate } from "react-router-dom";
 import LoginRegisterSwitch from "../../ui/LoginRegisterSwitch/LoginRegisterSwitch";
 import { useDispatch, useSelector } from "react-redux";
-import { tokenTrue } from "../../store/tokenSlice";
+import { tokenTrue } from "../../store/authSlice";
 const baseUrl: string = import.meta.env.VITE_BASE_URL;
 
 function Register() {
   const [registerError, setRegisterError] = useState<string>("");
 
   const dispatch = useDispatch();
-  const token = useSelector((store: any) => store.token.value);
+  const token = useSelector((store: any) => store.auth.token);
 
   const navigate = useNavigate();
 

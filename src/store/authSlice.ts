@@ -2,29 +2,31 @@ import { createSlice } from "@reduxjs/toolkit";
 import { getCookie } from "../components/CookieHandler/CookieHandler";
 
 interface initialState {
-  value: string | undefined;
+  token: string | undefined;
+  userNameValue: string | null;
 }
 
 const tokenCookie = getCookie("user-token");
 
 const initialState: initialState = {
-  value: tokenCookie,
+  token: tokenCookie,
+  userNameValue: localStorage.getItem("userName"),
 };
 
-const tokenSlice = createSlice({
-  name: "token",
+const authSlice = createSlice({
+  name: "auth",
   initialState,
   reducers: {
     tokenTrue: (state, action) => {
-      state.value = action.payload;
+      state.token = action.payload;
     },
 
     logOut(state) {
-      state.value = "";
+      state.token = "";
     },
   },
 });
 
-export const { tokenTrue, logOut } = tokenSlice.actions;
+export const { tokenTrue, logOut } = authSlice.actions;
 
-export default tokenSlice.reducer;
+export default authSlice.reducer;
