@@ -1,7 +1,7 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { RegisterResponse } from "../../types/auth";
-import TokenContext from "../../contexts/TokenContext";
+// import TokenContext from "../../contexts/TokenContext";
 import InputError from "../../ui/InputError/InputError";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -14,11 +14,14 @@ import { useNavigate } from "react-router-dom";
 import { setCookie } from "../../components/CookieHandler/CookieHandler";
 import LoginRegisterSwitch from "../../ui/LoginRegisterSwitch/LoginRegisterSwitch";
 import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { tokenTrue } from "../../store/tokenSlice";
 
 const baseUrl: string = import.meta.env.VITE_BASE_URL;
 
 function SignIn() {
-  const { token, setToken, setUserName } = useContext(TokenContext);
+  const dispatch = useDispatch();
+  const token = useSelector((store: any) => store.token.value);
   const [loginError, setLoginError] = useState<string>("");
   const navigate = useNavigate();
 
@@ -51,11 +54,9 @@ function SignIn() {
       const result: RegisterResponse = await response.json();
 
       if (response.ok) {
-        const token = result.token;
-        setToken(token);
+        const authToken = result.token;
+        dispatch(tokenTrue(authToken));
         localStorage.setItem("userName", JSON.stringify(result.user.name));
-        console.log("Sign-in success", result);
-
         setCookie("user-token", token, { path: "/", maxAge: 60 * 60 * 24 * 7 });
       } else {
         setLoginError(result.message || "Form submission failed");
@@ -67,11 +68,7 @@ function SignIn() {
   };
 
   useEffect(() => {
-    if (token) {
-      navigate("/");
-    } else {
-      navigate("/signin");
-    }
+    if (token) navigate("/");
   }, [token]);
 
   return (

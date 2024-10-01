@@ -1,13 +1,14 @@
 import { Navigate } from "react-router-dom";
-import { useContext } from "react";
-import TokenContext from "../../contexts/TokenContext";
+// import { useContext } from "react";
+// import TokenContext from "../../contexts/TokenContext";
+import { useSelector } from "react-redux";
 
 interface PrivateRouteProps {
   children: JSX.Element;
 }
 
 function PrivateRoute({ children }: PrivateRouteProps) {
-  const { token } = useContext(TokenContext);
+  const token = useSelector((store: any) => store.token.value);
 
   if (!token) {
     // Redirect to sign-in page if not authenticated
