@@ -1,7 +1,7 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { RegisterData, RegisterResponse } from "../../types/auth";
-import TokenContext from "../../contexts/TokenContext";
+// import TokenContext from "../../contexts/TokenContext";
 import InputError from "../../ui/InputError/InputError";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -13,11 +13,15 @@ import RegisterHeader from "../../components/RegisterHeader/RegisterHeader";
 import { setCookie } from "../../components/CookieHandler/CookieHandler";
 import { useNavigate } from "react-router-dom";
 import LoginRegisterSwitch from "../../ui/LoginRegisterSwitch/LoginRegisterSwitch";
+import { useDispatch, useSelector } from "react-redux";
+import { tokenTrue } from "../../store/tokenSlice";
 const baseUrl: string = import.meta.env.VITE_BASE_URL;
 
 function Register() {
-  const { token, setToken } = useContext(TokenContext);
   const [registerError, setRegisterError] = useState<string>("");
+
+  const dispatch = useDispatch();
+  const token = useSelector((store: any) => store.token.value);
 
   const navigate = useNavigate();
 
@@ -72,10 +76,8 @@ function Register() {
       const result: RegisterResponse = await response.json();
 
       if (response.ok) {
-        const token = result.token;
-        setToken(token);
-        console.log("Registration success", result);
-
+        const authToken = result.token;
+        dispatch(tokenTrue(authToken));
         setCookie("user-token", token, { path: "/", maxAge: 60 * 60 * 24 * 7 });
       } else {
         // Handle and display backend error messages directly

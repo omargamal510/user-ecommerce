@@ -1,13 +1,13 @@
-import { useContext } from "react";
 import { removeCookie } from "../../components/CookieHandler/CookieHandler";
-import TokenContext from "../../contexts/TokenContext";
+import { useDispatch } from "react-redux";
+import { logOut } from "../../store/tokenSlice";
 
 function Logout() {
-  const { setToken } = useContext(TokenContext);
+  const dispatch = useDispatch();
 
   function handleLogout() {
-    setToken("");
     removeCookie("user-token");
+    dispatch(logOut());
   }
 
   return (
