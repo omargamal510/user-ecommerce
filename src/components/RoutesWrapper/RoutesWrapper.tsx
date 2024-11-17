@@ -23,7 +23,7 @@ const Products: LazyExoticComponent<React.FC> = lazy(
 function RoutesWrapper() {
   const location: Location<any> = useLocation();
 
-  // Router must be updated to browser router !
+  // Router must be updated to browser router don't forget it's important !
 
   return (
     <Routes location={location} key={location.pathname}>
