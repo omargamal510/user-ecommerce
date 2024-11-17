@@ -3,7 +3,7 @@ import RoutesWrapper from "./components/RoutesWrapper/RoutesWrapper";
 function App() {
   return (
     <>
-      {/* Update the router inside here */}
+      {/* Update the router inside here today */}
       <Router>
         <RoutesWrapper />
       </Router>
